@@ -2,7 +2,7 @@ require_relative "../config/environment.rb"
 
 class Student
   attr_accessor :name, :grade
-    attr_reader :id
+  attr_reader :id
 
     def initialize(name, grade, id=nil)
       @name = name
@@ -11,17 +11,17 @@ class Student
     end
 
     def self.create_table
-    sql = <<-SQL
-      CREATE TABLE IF NOT EXISTS students (id INTEGER PRIMARY KEY, name TEXT,grade TEXT)
-    SQL
-    DB[:conn].execute(sql)
+      sql = <<-SQL
+        CREATE TABLE IF NOT EXISTS students (id INTEGER PRIMARY KEY, name TEXT,grade TEXT)
+        SQL
+        DB[:conn].execute(sql)
     end
 
     def self.drop_table
-    sql = <<-SQL
-      DROP TABLE students
-    SQL
-    DB[:conn].execute(sql)
+      sql = <<-SQL
+        DROP TABLE students
+        SQL
+        DB[:conn].execute(sql)
     end
 
     def save
@@ -50,13 +50,13 @@ class Student
     end
 
     def self.find_by_name(name)
-    sql = <<-SQL
-    SELECT * FROM students WHERE name = ? LIMIT 1
-    SQL
-    DB[:conn].execute(sql, name).map do |row|
-      self.new_from_db(row)
-    end.first
-  end
+      sql = <<-SQL
+      SELECT * FROM students WHERE name = ? LIMIT 1
+      SQL
+      DB[:conn].execute(sql, name).map do |row|
+        self.new_from_db(row)
+      end.first
+    end
 
   def update
     sql = <<-SQL
