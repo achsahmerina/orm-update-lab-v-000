@@ -33,7 +33,7 @@ class Student
 
         @id = DB[:conn].execute("SELECT last_insert_rowid() FROM students")[0][0]
       else
-        if self.id
+        self.id
           self.update
       end
 end
